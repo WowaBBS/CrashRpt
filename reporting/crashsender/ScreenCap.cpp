@@ -15,6 +15,33 @@ be found in the Authors.txt file in the root of the source tree.
 // Disable warning C4611: interaction between '_setjmp' and C++ object destruction is non-portable
 #pragma warning(disable:4611)
 
+template<typename T> T *GetModuleFunction(LPCTSTR pszModule, LPCSTR pszFunc)
+{
+   return reinterpret_cast<T*>(GetProcAddress(GetModuleHandle(pszModule),pszFunc));
+}
+
+#define GET_MODULE_FUNCTION(pszModule,Func) GetModuleFunction<decltype(Func)>(pszModule,#Func)
+
+// See: https://code.msdn.microsoft.com/windowsapps/DPI-Tutorial-sample-64134744/view/Discussions#content
+typedef enum _PROCESS_DPI_AWARENESS { 
+    PROCESS_DPI_UNAWARE            = 0,
+    PROCESS_SYSTEM_DPI_AWARE       = 1,
+    PROCESS_PER_MONITOR_DPI_AWARE  = 2
+  } PROCESS_DPI_AWARENESS;
+
+WINUSERAPI HRESULT WINAPI SetProcessDpiAwareness(
+    PROCESS_DPI_AWARENESS value
+);
+
+HRESULT MySetProcessDpiAwareness(PROCESS_DPI_AWARENESS value)
+{
+    static auto pSetProcessDpiAwareness =
+        GET_MODULE_FUNCTION(TEXT("Shcore.dll"), SetProcessDpiAwareness);
+    if(pSetProcessDpiAwareness!=nullptr)
+        return pSetProcessDpiAwareness(value);
+    return 0;
+}
+
 CScreenCapture::CScreenCapture()
 {
 	// Init internal variables
@@ -44,6 +71,8 @@ BOOL CScreenCapture::TakeDesktopScreenshot(
 
 	// First, we need to calculate the area rectangle to capture
     std::vector<CRect> wnd_list; // List of window rectangles
+    
+    MySetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);
 
     if(type==SCREENSHOT_TYPE_MAIN_WINDOW) // We need to capture the main window
     {     
@@ -335,13 +364,15 @@ cleanup:
 // Gets rectangle of the virtual screen
 void CScreenCapture::GetScreenRect(LPRECT rcScreen)
 {
-    int nWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN);
-    int nHeight = GetSystemMetrics(SM_CYVIRTUALSCREEN);
+    int nWidth  = GetSystemMetrics(SM_CXVIRTUALSCREEN );
+    int nHeight = GetSystemMetrics(SM_CYVIRTUALSCREEN );
+    int nLeft   = GetSystemMetrics(SM_XVIRTUALSCREEN  );
+    int nTop    = GetSystemMetrics(SM_YVIRTUALSCREEN  );
 
-    rcScreen->left = GetSystemMetrics(SM_XVIRTUALSCREEN);
-    rcScreen->top = GetSystemMetrics(SM_YVIRTUALSCREEN);
-    rcScreen->right = rcScreen->left + nWidth;
-    rcScreen->bottom = rcScreen->top + nHeight;
+    rcScreen->left   = nLeft          ;
+    rcScreen->top    = nTop           ;
+    rcScreen->right  = nLeft +nWidth  ;
+    rcScreen->bottom = nTop  +nHeight ;
 }
 
 BOOL CScreenCapture::PngInit(int nWidth, int nHeight, BOOL bGrayscale, CString sFileName)
@@ -702,8 +733,3 @@ BOOL CScreenCapture::FindWindows(DWORD dwProcessId, BOOL bAllProcessWindows, std
 
     return TRUE;
 }
-
-
-
-
-
