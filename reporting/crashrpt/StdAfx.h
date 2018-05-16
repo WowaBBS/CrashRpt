@@ -22,6 +22,7 @@ be found in the Authors.txt file in the root of the source tree.
 #define _RICHEDIT_VER	0x0200
 
 #include <errno.h>
+#ifndef NO_ATL
 #include <atldef.h>
 #if ( _ATL_VER < 0x0710 )
 #define _WTL_SUPPORT_SDK_ATL3 // Support of VC++ Express 2005 and ATL 3.0
@@ -60,6 +61,11 @@ extern CAppModule _Module;
 // CString-related includes
 #define _WTL_USE_CSTRING
 #include <atlmisc.h>
+
+#else
+#include "NoAtl/All.h"
+#endif // NO_ATL
+
 #include <new.h>
 #include <map>
 #include <set>
@@ -88,6 +94,3 @@ extern CAppModule _Module;
 #define WCSNCPY_S(strDest, sizeInBytes, strSource, count) wcsncpy_s(strDest, sizeInBytes, strSource, count)
 #define STRCPY_S(strDestination, numberOfElements, strSource) strcpy_s(strDestination, numberOfElements, strSource)
 #endif
-
-
-

@@ -4,6 +4,8 @@
 
 #include "stdafx.h"
 
+#ifndef NO_ATL
 #if (_ATL_VER < 0x0700)
 #include <atlimpl.cpp>
 #endif //(_ATL_VER < 0x0700)
+#endif // NO_ATL
