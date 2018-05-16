@@ -293,12 +293,12 @@ int Utility::GetSpecialFolder(int csidl, CString& sFolderPath)
 
 CString Utility::ReplaceInvalidCharsInFileName(CString sFileName)
 {
-    sFileName.Replace(_T("*"),_T("_"));
-    sFileName.Replace(_T("|"),_T("_"));
-    sFileName.Replace(_T("/"),_T("_"));
-    sFileName.Replace(_T("?"),_T("_"));
-    sFileName.Replace(_T("<"),_T("_"));
-    sFileName.Replace(_T(">"),_T("_"));
+    sFileName.Replace('*', '_');
+    sFileName.Replace('|', '_');
+    sFileName.Replace('/', '_');
+    sFileName.Replace('?', '_');
+    sFileName.Replace('<', '_');
+    sFileName.Replace('>', '_');
     return sFileName;
 }
 
@@ -604,4 +604,3 @@ BOOL Utility::IsFileSearchPattern(CString sFileName)
 		bSearchPattern = true;
 	return bSearchPattern;
 }
-

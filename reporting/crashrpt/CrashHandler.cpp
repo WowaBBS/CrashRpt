@@ -261,20 +261,21 @@ int CCrashHandler::Init(
     if(lpcszPrivacyPolicyURL!=NULL)
         m_sPrivacyPolicyURL = lpcszPrivacyPolicyURL;
 
-    // Get the name of CrashRpt DLL
-    LPTSTR pszCrashRptModule = NULL;
-    CString sCrashRptModule;
-#ifndef CRASHRPT_LIB
-#ifdef _DEBUG
-    sCrashRptModule.Format(_T("CrashRpt%dd.dll"), CRASHRPT_VER);
-    pszCrashRptModule = sCrashRptModule.GetBuffer(0);
-#else
-    sCrashRptModule.Format(_T("CrashRpt%d.dll"), CRASHRPT_VER);
-    pszCrashRptModule = sCrashRptModule.GetBuffer(0);
-#endif //_DEBUG
-#else //!CRASHRPT_LIB
-    pszCrashRptModule = NULL;
-#endif
+//  Removed because unused
+//  // Get the name of CrashRpt DLL
+//  const LPTSTR pszCrashRptModule = NULL;
+//  CString sCrashRptModule;
+//#ifndef CRASHRPT_LIB
+//#ifdef _DEBUG
+//  sCrashRptModule.Format(_T("CrashRpt%dd.dll"), CRASHRPT_VER);
+//  pszCrashRptModule = sCrashRptModule.GetBuffer(0);
+//#else
+//  sCrashRptModule.Format(_T("CrashRpt%d.dll"), CRASHRPT_VER);
+//  pszCrashRptModule = sCrashRptModule.GetBuffer(0);
+//#endif //_DEBUG
+//#else //!CRASHRPT_LIB
+//  pszCrashRptModule = NULL;
+//#endif
 
     // Save path to CrashSender.exe
     if(lpcszCrashSenderPath==NULL)
@@ -291,7 +292,7 @@ int CCrashHandler::Init(
     // Get CrashSender EXE name
     CString sCrashSenderName;
 
-#ifdef _DEBUG
+#if defined(_DEBUG) && !defined(NO_CRASH_SENDER_DEBUG)
     sCrashSenderName.Format(_T("CrashSender%dd.exe"), CRASHRPT_VER);
 #else
     sCrashSenderName.Format(_T("CrashSender%d.exe"), CRASHRPT_VER);
@@ -299,7 +300,7 @@ int CCrashHandler::Init(
 
     // Check that CrashSender.exe file exists
     if(m_sPathToCrashSender.Right(1)!='\\')
-        m_sPathToCrashSender+="\\";    
+        m_sPathToCrashSender+=_T("\\");
 
     HANDLE hFile = CreateFile(m_sPathToCrashSender+sCrashSenderName, FILE_GENERIC_READ, 
         FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);  
@@ -347,10 +348,10 @@ int CCrashHandler::Init(
         m_sPathToDebugHelpDll = CString(lpcszDebugHelpDLLPath);        
     }  
 
-    CString sDebugHelpDLL_name = "dbghelp.dll";  
+    CString sDebugHelpDLL_name = _T("dbghelp.dll");
 
     if(m_sPathToDebugHelpDll.Right(1)!='\\')
-        m_sPathToDebugHelpDll+="\\";
+        m_sPathToDebugHelpDll+=_T("\\");
 
 	// Load dbghelp.dll library
     HANDLE hDbgHelpDll = LoadLibrary(m_sPathToDebugHelpDll+sDebugHelpDLL_name);    
@@ -2321,5 +2322,3 @@ DWORD CCrashHandler::GetFlags()
 {
 	return m_dwFlags;
 }
-
-
