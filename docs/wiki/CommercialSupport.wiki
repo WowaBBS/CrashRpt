@@ -1,0 +1,29 @@
+#summary Commercial Support Services.
+#labels Phase-Support
+
+== What commercial support services are provided? ==
+
+If you have a `CrashRpt`-related question to be answered in a short period of time or need a bug to be fixed quickly, or even need a new complex `CrashRpt` feature to be implemented, we will be happy to help. 
+
+|| *Service* || *Cost* ||
+|| Accidental support^1^ || $25 ||
+|| One month support subscription^2^ || $99 ||
+|| New feature implementation || Hourly^3^ ||
+
+^1^ - this support service provides you with two hours of custom consulting that can be used by you to ask questions or have bugs resolved.
+^2^ - this support service includes one month (30 days) of custom consulting that can be used by you to ask questions or have bugs resolved.
+^3^ - the cost depends on the feature.
+
+== I have a question or need help. What do I do? ==
+
+Please contact us using the E-mail address below. You can ask your question or ask for help in the E-mail, and if we are able to answer the question and/or provide you the help, we send you a `PayPal` invoice. As soon as you pay, you receive the support services.
+
+== I want a new `CrashRpt` feature to be implemented quickly. What do I do? ==
+
+You can hire the guy who maintains `CrashRpt` to implement the feature you want. You can control what the developer does through [https://kb.odesk.com/questions/1158/What+is+the+oDesk+Team+application%3F oDesk Team] application and pay on hourly basis. Please contact us using the information below.
+
+== Contact Us ==
+
+Please use the E-mail address below to contact the support. Please specify what is your question and what support service type you would like to have.
+
+E-mail: zexspectrum@gmail.com

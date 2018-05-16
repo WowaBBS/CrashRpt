@@ -1,0 +1,24 @@
+#summary User Support Resources
+
+<table border="0" cellpadding="10" cellspacing="10">
+<tr>
+<td><h3>[Tutorials]</h3></td>
+<td>Read this if you are new to `CrashRpt`</td>
+</tr>
+<tr>
+<td><h3>[http://crashrpt.sourceforge.net Online Documentation]</h3></td>
+<td>`CrashRpt` user manual & API reference</td>
+</tr>
+<tr>
+<td><h3>[FAQ]</h3></td>
+<td>Read this for quick start and for troubleshooting</td>
+</tr>
+<tr>
+<td><h3>[CommercialSupport Contact Us]</h3></td>
+<td>Time-critical support & feature requests on commercial basis</td>
+</tr>
+</table>
+
+ 
+ 
+ 

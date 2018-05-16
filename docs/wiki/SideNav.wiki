@@ -1,0 +1,7 @@
+#labels Deprecated
+  * [FAQ Frequently Asked Questions]
+  * [WhatsNew Release History]
+  * [WhoUsesCrashRpt Who Uses CrashRpt?]
+  * ContributingLanguageFiles
+  * PrivacyPolicyTemplate
+  * [CrashRpt_v1_0_Documentation]

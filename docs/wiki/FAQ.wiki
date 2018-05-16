@@ -1,0 +1,719 @@
+#summary Frequently Asked Questions
+#labels Featured,Phase-Deploy
+
+<wiki:toc max_depth="2" />
+
+----
+
+= General Questions = 
+
+== What is crashrpt? ==
+
+`CrashRpt` is a light-weight free and open-source error reporting library for C++ applications created in Microsoft Visual C++ and running in Windows. 
+
+== What license does crashrpt use? ==
+
+`CrashRpt` is licensed under the [http://crashrpt.sourceforge.net/License.txt New BSD License]. Other software included in `CrashRpt` distribution is provided under other licenses, as listed in the table below. 
+
+|| *Name* || *License* ||
+|| [http://sourceforge.net/projects/wtl/ WTL] || [http://opensource.org/licenses/ms-pl.html Microsoft Permissive License] ||
+|| [http://msdn.microsoft.com/en-us/library/ms679309%28VS.85%29.aspx Microsoft Debug Help Library] || [http://msdn.microsoft.com/en-us/library/ms679309%28VS.85%29.aspx Microsoft Software License Terms for Microsoft Debugging Tools for Windows] ||
+|| [http://www.grinninglizard.com/tinyxml/ TinyXml] || [http://en.wikipedia.org/wiki/TinyXML licence of zlib/libpng] ||
+|| [http://www.zlib.net/ ZLib] || [http://www.gzip.org/zlib/zlib_license.html zlib license] ||
+|| [http://www.winimage.com/zLibDll/minizip.html minizip] || [http://www.gzip.org/zlib/zlib_license.html zlib license] ||
+|| [http://www.libpng.org/pub/png/libpng.html libpng] || [http://www.libpng.org/pub/png/src/libpng-LICENSE.txt libpng license] ||
+|| [http://www.ijg.org/ Jpeg library] || [http://www.ijg.org/ Independent JPEG Group license] ||
+|| [http://www.theora.org/ libtheora] || [http://www.theora.org/faq/#14 BSD-style license] || 
+|| [http://xiph.org/ogg/ libogg] || [http://xiph.org/ogg/ BSD-style license] ||
+
+== Why should I use crashrpt in my Visual C++ project? ==
+
+If you have ever tried to determine the reason of a crash on end user's machine, you might know how difficult it is when you have user's directions only: "I opened something, then I clicked something and then it stopped working". 
+
+Most users won't contact you to tell about the problem and just give up using the program after several crashes. Users who decide to report the problem might not have technical knowledge, so it is difficult to determine the reason of the problem based on their instructions. 
+
+This makes debugging remote crashes almost impossible, except in the simplest situations. That's why it is important to use special library like `CrashRpt` to collect technical information about the problem (crash minidump, desktop screenshot and so on) and to send the error report automatically.
+
+== What are the main features of crashrpt? ==
+
+  * `CrashRpt` is a free and open-source crash reporting library. It is designed for Windows applications built in Microsoft Visual Studio IDE. `CrashRpt` is able to intercept unhandled SEH exceptions, typed C++ exceptions and C run-time errors.
+
+  * `CrashRpt` can send error reports using HTTP (or HTTPS) or using an E-mail message. The E-mail messages are suitable for developers who don't have a server for storing error reports. 
+
+  * `CrashRpt` has a tool for error report post-processing. The tool may be useful when you receive hundreds of reports a day and need to process them all at once (although the tool can't replace the human completely).
+
+== What programming languages can I use crashrpt in? ==
+
+You can use `CrashRpt` in C++ programs created using Visual C++. You can NOT use it in .NET or in Visual Basic. 
+
+== Can I use crashrpt in an MFC-based application? ATL/WTL-based application? WinAPI application? ==
+
+Yes, you can use `CrashRpt` in a Visual C++ project using any of the technologies: MFC, ATL/WTL or pure WinAPI.
+
+== Can I use crashrpt in a QT-based application under Windows? ==
+
+Yes, you can use `CrashRpt` in a Visual C++ project based on QT library.
+
+== What is an exception? ==
+
+An exception (a critical error or a crash) typically means that a program stops working normally and needs to stop its execution. For example, an exception may occur when program accesses an invalid memory address (such as NULL pointer), when stack is overflown due to infinite recursion or when C++ run time libraries detect an error and request program termination. There are also other possible reasons of exceptions.
+
+== What is an error report? ==
+
+An error report is a ZIP archive containing a collection of files intended to help the developer diagnose the cause of a crash. For example, the error report may contain crash minidump file, desktop screenshot file, application log file and so on.
+
+== How does crashrpt create an error report when crash occurs? ==
+
+When crash occurs in client application, `CrashRpt` launches another process named `CrashSender.exe` and proceeds with collecting crash data in that process. The parent process is terminated as soon as data have been collected. 
+
+== Where can I find the latest version of crashrpt? ==
+
+The latest version of `CrashRpt` can be found at [http://code.google.com/p/crashrpt/downloads/list Downloads] page. For the list of changes, see [http://crashrpt.googlecode.com/svn/trunk/Changelog.txt What's New].
+
+== How do I open crashrpt distribution archive? ==
+
+`CrashRpt` uses `7z` file format for its distribution archive, because this format offers better compression than regular `zip` format. You can open the archive using [http://www.7-zip.org/ 7-Zip] program.
+
+== Where do I look for crashrpt documentation? ==
+
+The documentation is usually included into the `CrashRpt` distribution archive. To open the documentation, click the `index.html` in the top level directory of the `CrashRpt` distribution.
+
+Online documentation for the latest `CrashRpt` version is also available here: [http://crashrpt.sourceforge.net/ Online Documentation].
+
+== Are there any beginner's tutorials? ==
+
+You may read the [http://www.codeproject.com/Articles/499313/Automating-the-Reporting-of-Critical-Errors-in-You Automating the Reporting of Critical Errors in Your Program] and the [http://www.codeproject.com/KB/MFC/CrashRptTutorial.aspx Integrating Crash Reporting into Your Application - A Beginners Tutorial] articles on `CodeProject.com`. 
+
+A good starting point for learning `CrashRpt` is the FAQ you are currently reading and the [http://crashrpt.sourceforge.net Online Documentation].
+
+If you speak Russian you may read this article [http://rsdn.ru/article/files/libs/crashrpt.xml Using the CrashRpt Library] on `rsdn.ru` or [http://habrahabr.ru/post/156255/ this post] on `habrahabr.ru`.
+
+== I want to receive notifications on new releases of crashrpt. Do you have a mailing list for this? ==
+
+To track new releases and other changes in `CrashRpt` project, you can use [http://code.google.com/p/crashrpt/feeds Project Feeds].
+
+== How do I report a bug in crashrpt? ==
+
+You can create an issue at our [http://code.google.com/p/crashrpt/issues/list Issues] page. We appreciate your feedback. We also provide time-critical commercial [CommercialSupport support services] if you need the bug to be fixed in a short period of time.
+
+== How do I request a new feature? ==
+
+We provide high-quality time-critical commercial [CommercialSupport support services], so you can hire the developer to implement the feature you request. Please visit the [CommercialSupport Commercial Support] page for more information.
+
+== I found a bug in `CrashRpt.dll` or in `CrashSender.exe` (it crashes itself :)) and want to debug it in Visual C++ to determine the reason of the problem. What to I do? ==
+
+Its easy to run `CrashRpt.dll` code in step-by-step debugging mode. Just trigger an exception in the application. But there may be a problem if Visual C++ doesn't allow you to debug after exception had occurred. To workaround this, generate error report manually without exception, using `crGenerateErrorReport()` function. This way you should be able to debug.
+
+If the code in `CrashRpt.dll` works fine, but `CrashSender.exe` crashes, you need to attach to `CrashSender.exe` process when it is launched. In Visual C++ window, open `Debug | Attach to process...` menu and select `CrashSender.exe` in the list of processes. Then you will be able to run the code in step-by-step debugging mode.
+
+== How do I contribute into crashrpt project development? ==
+
+First of all create a topic in our [http://groups.google.com/group/crashrpt Forum] and describe there how you would like to contribute. Then we will add your email to the list of project members and you will be able to make changes in the source code.
+
+== Who are the crashrpt project authors? ==
+
+The list of project authors can be found [http://crashrpt.sourceforge.net/Authors.txt here].
+
+== What Windows versions crashrpt can work in? ==
+
+`CrashRpt` supports Windows XP/2003/Vista, Windows 7 and Windows 8. 
+
+== What Visual C++ versions can I use crashrpt in? ==
+
+You can compile `CrashRpt` in Visual C++ 2005, Visual C++ 2008, Visual C++ 2010 and Visual Studio 2012. You can also compile `CrashRpt` in Visual C++ Express Edition. 
+
+== Is crashrpt a _fully_ open-source? ==
+
+`CrashRpt` itself is open-source, but it depends on system library `dbghelp.dll` (Microsoft Debug Help Library), which is not open-source and included into `CrashRpt` distribution to avoid problems with older `dbghelp.dll`'s versions installed on end-users' computers. However, this does not prevent you from using `CrashRpt` in any application (either open-source or proprietary), because `dbghelp.dll`'s license allows to distribute the `dbghelp.dll` library with other software.
+
+== Can I use crashrpt in my commercial application? ==
+
+According to [http://crashrpt.sourceforge.net/License.txt New BSD licence], you can freely use `CrashRpt` in any application.
+
+== Should I give credits if my application uses crashrpt? ==
+
+The [http://crashrpt.sourceforge.net/License.txt New BSD License] clearly states that an application that distributes `CrashRpt` in compiled (binary) form must reproduce the copyright notice, the list of conditions and the disclaimer in the documentation and/or other materials provided with the distribution.  
+
+== Where would you like your copyright notice reproduced? Is the About dialog and an accompanying Readme sufficient? ==
+
+Yes, feel free to reproduce the copyright notice in your About dialog. The accompanying Readme would be sufficient, too.
+
+== I want to sign crashrpt binaries with some tools. Is this a violation of the crashrpt license? == 
+
+No, the New BSD License that is used by `CrashRpt` permits to distribute the `CrashRpt` binaries with or without modification. So, feel free to sign `CrashRpt` binaries or modify them any other way.
+
+== How to deal with those licenses of other software included in crashrpt distribution? It seems to me that one have to read all licenses and do what they require, isn't it? ==
+
+Yes, you are right. You should follow the instructions listed in those
+licenses. In most cases including those licenses into your distribution would be sufficient.
+
+== I receive a lot of error reports from users of my software every day. Does crashrpt have a server-side component that would process crash reports automatically? ==
+
+You may try the [http://crashfixsoftware.com CrashFix Server] that can process crash reports sent by `CrashRpt`. 
+
+[http://crashfixsoftware.com http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/download_crashfix.png]
+
+== I can't find the answer to my crashrpt-related question in this FAQ. What do I do? ==
+
+We provide commercial [CommercialSupport support services], so you can receive the answer to your question quickly. You can also ask a question using our community [http://groups.google.com/group/crashrpt Forum].  
+
+----
+
+= Compilation Questions =
+
+== How do I properly install crashrpt? ==
+
+Typically, you download and unzip `CrashRpt` archive to some folder and then follow installation instructions listed in the documentation. These include compiling `CrashRpt` in your version of Visual Studio IDE, configuring your project's build settings and using `CrashRpt` API.
+
+== Why is it strongly recommended that I compile crashrpt myself? ==
+
+It is strongly recommended that you compile `CrashRpt` yourself to ensure `CrashRpt` uses the same C run-time DLLs as your application. 
+
+`CrashRpt` distribution already has compiled `CrashRpt` binaries, but it is not recommended to use them with your software, because your software may use different C run-time DLLs, and `CrashRpt` won't be able to intercept exceptions in your C run-time libraries.
+
+== How do I compile crashrpt in Visual C++ Express Edition? ==
+
+In order to compile `CrashRpt` in Visual C++ Express Edition, you additionally have to download and install either `Microsoft Windows Driver Kit` (recommended) or `Microsoft Platform SDK for Windows Server 2003 SP1`. Below these two alternatives are described:
+
+a. You can download Windows Driver Kit from [http://www.microsoft.com/whdc/devtools/wdk/wdkpkg.mspx here]. After installing WDK, in VC++ Express window, open menu `Tools->Options...->Projects and Solutions->VC++ Directories`. In the 'Show directories for' combo, select 'Include files' and then add `[WDK_Folder]\Inc\crt\atl71` path to the list of include directories (`[WDK_Folder]` should be replaced with actual folder name).
+
+b. You can download Platform SDK from [http://www.microsoft.com/downloads/details.aspx?FamilyId=A55B6B43-E24F-4EA3-A93E-40C0EC4F68E5&displaylang=en this place]. After installing Platform SDK, in VC++ Express window, open menu `Tools->Options...->Projects and Solutions->VC++ Directories`. In the 'Show directories for' combo, select 'Include files' and then add `[Platform_SDK_Folder]\Include\atl` path to the list of include directories (`[Platform_SDK_Folder]` should be replaced with the actual folder name). 
+
+`Note`: In VC++ 2010 Express, there is no usual VC++ Directories page. Instead, open the Property Manager window, multi-select all projects and right click the selection. In the appeared dialog, open `Configuration Properties->VC++ Directories`. In the `Include Directories` field, enter the required path. 
+
+== Why do I have to install Windows Driver Kit or Platform SDK for Windows Server 2003 to be able to compile crashrpt in Visual C++ Express? ==
+
+This is because `CrashRpt` depends on WTL library, which in turn depends on Microsoft's ATL library. 
+
+ATL library is a part of Visual Studio SDKs. An older version, ATL 3.0 is also included into Microsoft Platform SDK for Windows Server 2003. Since then, Platform SDK was renamed into Windows SDK. However, Microsoft didn't include ATL into Windows SDK. For additional info on using WTL with VC++ Express, you may see this [http://www.codeproject.com/KB/wtl/WTLExpress.aspx article].
+
+== Where do I look for VC++ Directories in Visual C++ 2010? ==
+
+In VC++ 2010, there is no usual VC++ Directories page. Instead, you open the Property Manager window, multi-select all projects and right click the selection. In the appeared dialog, open `Configuration Properties->VC++ Directories`. For additional information, see this [http://blogs.msdn.com/b/vsproject/archive/2009/07/07/vc-directories.aspx post].
+
+== What platforms crashrpt can be compiled for? ==
+
+`CrashRpt` can be compiled for both 32-bit (Win32) and 64-bit (x64) platforms.
+
+== Why do crashrpt binaries have version number in their file names? ==
+
+`CrashRpt` binaries are named like `CrashRpt1401.dll` and `CrashSender1401.exe` to ensure your application won't load incorrect version of `CrashRpt`.
+
+== What's the easy way of linking the current version of `CrashRpt.dll`? ==
+
+To make it easy to link the current version of `CrashRptXXXX.dll`, not depending on version suffix, you can use the following code:
+
+{{{
+#ifdef _DEBUG
+   #pragma comment(lib, "CrashRpt" #CRASHRPT_VER "d.lib")
+#else
+   #pragma comment(lib, "CrashRpt" #CRASHRPT_VER ".lib")
+#endif //_DEBUG
+}}}
+
+== I want to add projects from crashrpt solution to my own solution. Can I do this? ==
+
+Actually, this is not recommended to do. The recommended way is compiling `CrashRpt` as a separate solution, and then adding paths to .h and .lib files to your project's VC++ Directories.
+
+== All my projects use multi-byte character set, so I changed it also in crashrpt library, but I experience some compilation problems. What do I do? ==
+
+It is not recommended to modify character set related settings in `CrashRpt` solution projects. `CrashRpt` should always be compiled using the UNICODE character set. In your multi-byte application, you can use A-suffixed functions from `CrashRpt` API. For example, use `crInstallA()`, `crAddFile2A()` and so on. Typically, you use a character-set-independent mapping of a function name, for example `crInstall()` name automatically expands into `crInstallA()` in a multi-byte program, and into `crInstallW()` in a wide-char program.
+
+== `CrashRpt` uses third-party libraries, such as libpng, zlib, etc., and we also use them currently in our project, so we would like to build these third-party libs as DLLs to share their code. Can we do this? ==
+
+It is not recommend to build libpng/zlib/minizip/etc as shared DLLs, because their versions used in `CrashRpt` are slightly customized. For example, minizip was customized to fix some of their UNICODE compatibility issues, and `TinyXml` was patched to fix some UTF-8 encoding issues. So, it is strongly not recommended to modify the type of projects in `CrashRpt ` solution. 
+
+== I want to make some projects in crashrpt solution to use multi-byte charset instead of UNICODE. Can I do this? ==
+
+It is strongly not recommended to modify the charset of projects in `CrashRpt ` solution. Why would you want to do so? `CrashRpt` API is designed to work with both multi-byte and UNICODE applications. It may also be very difficult to convert `CrashRpt` projects from UNICODE to multi-byte character set, because the code does not directly support such ability. `CrashRpt` code is designed to be compiled using UNICODE charset, and converting to multi-byte would require to rewrite/patch some code. 
+
+----
+
+= API Usage Questions =
+
+== What .h file should I include in my code and what .lib file should I link my code to? ==
+
+Include `CrashRpt.h` header file in the beginning of your code.
+
+{{{
+  // Include CrashRpt header
+  #include "CrashRpt.h"
+}}}
+
+You also need to add `CrashRptXXXX.lib` (where XXXX is the version number) to the list of input libraries for your project. In the Solution Explorer window, right-click your project and choose Properties item in the context menu. Then open `Configuration Properties->Linker->Input->Additional Dependencies` and then add `CrashRptXXXX.lib` to the list of libraries.
+
+== I install crashrpt to my MFC app, but exceptions are not caught. What do I do? ==
+
+You can override your `CWinApp::Run()` method and install `CrashRpt` there. In the CPP file containing your App class, add the following code:
+
+{{{
+int CYourApp::Run() 
+{
+  // Call your crInstall code here ...
+
+  BOOL bRun;
+  BOOL bExit=FALSE;
+  while(!bExit)
+  {
+    bRun= CWinApp::Run();
+    bExit=TRUE;
+  }
+  return bRun;
+}
+}}}
+
+== Do crashrpt API functions support UNICODE character set? multi-byte character set (MBCS)? ==
+
+Yes, all `CrashRpt` functions using character set dependent arguments have two versions of function name (multi-byte versions are A-suffixed and wide character versions are W-suffixed). For example, `crInstall()` function has two versions of function name: `crInstallA()` and `crInstallW()`. Typically you use a character set independent mapping of function name in your program, for example use `crInstall()` that expands into `crInstallW()` if you use wide character set or into `crInstallA()` if you use multi byte character set.
+
+== How do I use crashrpt in a multi-threaded application? ==
+
+You should use `CrashRpt` API functions to set exception handlers in the beginning of thread procedure of each of your worker threads. Do not forget to unset handlers in just before exiting the thread procedure.
+
+== I need to modify some crashrpt configuration info (i.e. uPriorities) based on information collected after `crInstall()`. What is the best way ?==
+
+Currently, there are no ways to modify the `CrashRpt` configuration info after calling `crInstall()`. I would recommend to hard-code the info you pass to `crInstall()` function, that means not reading it from an INI file or from another source. 
+
+However, if you strongly wish to read crashrpt configuration info from an external file, call `crInstall()` _after_ reading the info from that file. Simple file reading functionality is not likely to crash. So the probability you miss a crash while reading the file is small. 
+
+== We ship a software (game etc.) and certain crashes only happen on certain hardware. So we need some sort of functionality that gathers GPU/CPU/general hardware information upon crash report generation. What do we do? ==
+
+You can collect the hardware information using [http://msdn.microsoft.com/en-us/library/windows/desktop/aa394582(v=vs.85).aspx WMI] and then include it into your crash reports. We introduced a function `crAddProperty()` specially for purposes of extending the crash description XML as you wish. You can also use the `crAddFile2()` function, which allows to add a user-defined file to the crash report.
+
+== I want to uniquely identify the installation by what the error reports are sent. What do I do? ==
+
+In `CrashRpt` v.1.2.1, we introduced a function `crAddProperty()` specially for purposes of extending the crash description XML as you wish. You can create the installation GUID in your program, store it in the registry or in a file and pass this GUID to the `crAddProperty()` function, so the named property will be added to the crashrpt.xml and 
+you will be able to identify the installation and associate the bugs together.
+
+The following code example shows how to do this (code provided by tdev):
+
+{{{
+  // ... upon program start, check if GUID is not existing, if not create one:
+  GUID *g = new GUID();
+  CoCreateGuid(g);
+  
+  char buf[120];
+  sprintf( buf, "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
+    g->Data1, g->Data2, g->Data3, UINT(g->Data4[0]), UINT(g->Data4[1]), UINT(g->Data4[2]), 
+    UINT(g->Data4[3]), UINT(g->Data4[4]), UINT(g->Data4[5]), UINT(g->Data4[6]), UINT(g->Data4[7]));
+  delete g;
+  std::string guid = std::string(buf);
+
+  //... later, add it to the crash report:
+  crAddProperty("SystemGUID", guid);
+}}}
+
+== My software's worker thread hangs up on users machine (but the main thread is alive and no crash happens). How do I debug the problem? ==
+
+To collect information about such error, you may provide an ability to generate error report manually, for example on a key combination press. When the key combination is pressed, generate error report manually using `crGenerateErrorReport()` function.  
+
+== I would like to force the user to enter a description of what happened just before the crash. What do I do? ==
+
+The user has an ability to enter the description of the problem in the Error Report dialog by clicking the link "Provide additional information (recommended)". However, practice shows most users do not enter anything meaningful into this field.
+
+== Does crashrpt support a non-GUI (silent) mode? ==
+
+Yes, `CrashRpt` supports non-GUI mode. In the non-GUI mode, `CrashRpt` doesn't show any windows and sends the report without any user interaction. You can use such mode if your application is a service which does not interact with user. However, it is not recommended to use the non-GUI mode with regular GUI applications that create windows and interact with user.
+
+== Does crashrpt support automatic restart of the application that crashes? ==
+
+Yes, `CrashRpt` supports automatic application restart. But the restart is performed if two conditions are satisfied: 
+  * If at least 60 seconds have elapsed since the application start. This is done to avoid cyclic restarts in case when crash occurs on application start up.
+  * If the user has provided his consent to restart the app. 
+
+== What is the recommended way of CRT linkage for crashrpt to work properly? ==
+
+It is recommended that you configure your project to use C runtime libraries (CRT) as `Multi-threaded DLL (/MD)` for `Release` configuration. This is the way recommended in MSDN. 
+
+In the Solution Explorer window, right-click your project and open project Properties. Then choose `Configuration Properties->C/C++->Code Generation`. In the `Runtime Library` field, choose `Multi-threaded DLL (/MD)`.
+
+This should be done for all projects in your solution to ensure all modules will share single CRT DLL.
+
+== What do I do if modules of my application use different versions of CRT? ==
+
+Ensure that all modules that exist in your application use the same version of CRT. If some dependent modules were compiled using an older version of CRT, you should recompile them to ensure the single version or CRT DLL is used.
+
+For example, assume you use Visual Studio 2005 and CRT 8.0 linked as DLL, but some dependent module in your application was compiled in Visual Studio .NET 2003 and uses CRT 7.1 linked as DLL. In such situation a CRT error in the dependent module won't be intercepted by `CrashRpt`, because `CrashRpt` will intercept exceptions in CRT 8.0 only. However, `CrashRpt` will intercept SEH exceptions in all modules not depending on CRT version.
+
+== What do I do if my project uses CRT as a static library? ==
+
+You can compile `CrashRpt` in `Release LIB` configuration. 
+
+Actually, it is recommended that you configure your project to use C runtime libraries (CRT) as `Multi-threaded DLL (/MD)` for `Release` configuration. This is the way recommended in MSDN. And you may have troubles if CRT is used in different way. Below is explained why CRT DLL is better than the static LIB.
+
+Each module (EXE, DLL) in your project is linked to CRT (C runtime libraries). You may link CRT as multi-threaded static library or as multi-threaded dynamic link library (DLL). When you set CRT error handlers, such as pure call handler or invalid parameter handler, they will work for the CRT the caller module is linked to and won't intercept exceptions in different CRT modules (if exist).
+
+Several project modules may share single CRT DLL. This reduces to minimum the overall size of linked CRT code. And all exceptions within that CRT DLL can be handled at once. That's why multi-threaded CRT DLL is the recommended way of CRT linkage.
+
+== What is `Release LIB` build configuration? ==
+
+The `Release LIB` configuration is an addition to the standard Debug and Release build configurations. Typically, you do not compile `CrashRpt` in this configuration. However, it may be useful if you use static CRT linkage.
+
+In the `Release LIB` configuration, the build generates `CrashSender.exe` executable file and `CrashRptLIB.lib` static library. In this configuration, `CrashSender.exe` and `CrashRptLIB.lib` use static linkage to CRT.   
+
+== Why should I enable Program Database (/Zi) compiler flag and Generate Debug Info (/DEBUG) linker flag? ==
+
+To get the most out of the crash minidump, the debugger needs your application's debug symbols. By default, Release builds don't generate debugging symbols. The crash minidump is unusable without the debugging symbols database (program database, PDB). 
+
+  # In the `Solution Explorer` window, right-click your project and open project Properties window. Then choose `Configuration Properties->C/C++->General`. In the `Debug Information Format` field, choose `Program Database (/Zi)`.
+  # Choose `Configuration Properties->Linker->Debugging`. In the `Generate Debug Info` field, choose `Yes (/DEBUG)`. In the Generate Program Database File` field, enter the name for your PDB file.
+
+These steps should be performed for all projects in your solution that support program database (EXE, DLL).
+
+== Do program optimizations (/O compiler switch) affect the minidump generation? ==
+
+Yes, if you enable optimizations, the stack trace recovered from minidump may be incomplete. 
+
+We recommend turning off Frame Pointer Omission (FPO) optimization in release version configurations, as this optimization does not really give an appreciable gain, but greatly complicates the analysis of the dump: the /Oy compiler option makes using the debugger more difficult because the compiler suppresses frame pointer information. Moreover, in Visual Studio 2010 this optimization is disabled by default.
+
+If you can't afford yourself to turn the optimization off, you can manage some error log file which is not affected by optimizations.
+
+== What is the minidump type? What minidump type should I use? ==
+
+The minidump type defines what information is contained in the minidump. The default minidump type is `MiniDumpNormal`. However, the `MiniDumpNormal` contains only essential info required to recover the stack traces for each thread. To recover the state of global variables, other minidump types should be used. For additional info, see the [http://www.debuginfo.com/articles/effminidumps.html Effective Minidumps] article.
+
+== What is the Privacy Policy? Where can I find a template for the Privacy Policy? ==
+
+You can use a privacy policy which describes what user information your software collects on crash. You provide the URL of your privacy policy document, which you may publish on your web site or distribute with your software. If you need a template you may use this one: PrivacyPolicyTemplate.
+
+== I don't want to provide the Privacy Policy. What do I do? ==
+
+Just set the `CR_INSTALL_INFO::pszPrivacyPolicyURL` parameter with NULL. This will hide the Privacy Policy link.
+
+== How to set the privacy policy link to a file in the installation? ==
+
+If you want to use a local privacy policy file instead of a web-based URL, than you should use the `file:///` scheme. For example, if you install your app to `C:\Program Files (x86)\MyApp` folder, specifying something like `file:///C:\Program Files (x86)\MyApp\crash_report_privacy_policy.rtf` should work.
+
+----
+
+= Internationalization Questions =
+
+== Does crashrpt support multi-lingual user interface? ==
+
+Yes, `CrashRpt` supports multi-lingual user interfaces. You can find a language file inside of the `lang_files` subdirectory of crashrpt distribution. The language file contains localized strings used by `CrashRpt` dialogs.
+
+You should place a valid language file named as `crashrpt_lang.ini` to the directory where `CrashSender.exe` file is located in order to make `CrashRpt` work properly. The language file is a text document in UNICODE format and having INI extension. 
+
+If your software supports several languages, you can distribute several language files with your software. On install, rename an appropriate file to `crashrpt_lang.ini` and copy it to the folder where your `CrashSender.exe` is located.
+
+== Can I contribute a language file? ==
+
+If there is no language file for your favorite language, you can contribute one. Also, if you see that there are some mistakes in an existing language file, you may want to improve it and then contribute your changes. 
+
+----
+
+= Software Distribution Questions =
+
+== I use a packer for my EXE or DLL (e.g. PECompact, UPX and so on). How does this affect the way I read the generated minidump file? ==
+
+If you use a compression utility for reducing the size of your executable or DLL, be careful of the following. To be able to read  minidumps, you need to save a local copy of the uncompressed EXE (DLL) file and a PDB file generated for that EXE (DLL). You also need to have the source code that you used when building the EXE (DLL). These should be enough to read the minidump generated by the compressed version of your EXE. 
+
+If you use PECompact compression utility, be sure you turn the debug info stripping off by specifying the `/StripDebug:No` option. By default, PECompact removes (strips) the debugging information from the executable file.
+
+== I sign my EXE with a digital certificate (Authenticode). How does this affect the way I read the generated minidump file? ==
+
+If you use an Authenticode utility for signing your executable, be careful of the following. In order to read the minidump, you need to save a local copy of the unsigned EXE file and a PDB file generated for that EXE. You also need to have the source code that you used when building the EXE. These should be enough to read the minidump generated by the signed version of your EXE. 
+
+== I need to edit a resource embedded into my compiled EXE (DLL) binary (e.g. I need to upgrade its version). How this affects the way I read the generated minidump file? ==
+
+If you edit resources in your compiled binaries, be careful of the following. In order to read the minidump, you need to save a local copy of the original (unmodified) EXE (DLL) file and a PDB file generated for that EXE (DLL). You also need to have the source code that you used when building the EXE (DLL). These should be enough to read the minidump generated by the resource-modified version of your EXE (DLL). 
+
+== I use `IncrediBuild` for compiling my project. Does crashrpt work with PDB files generated such way? ==
+
+Yes, `CrashRpt` works with PDB files generated with help of `IncrediBuild`. [http://www.xoreax.com/ IncrediBuild] is a platform for accelerating Visual C++ builds through by distributing the build processes over local area network.
+
+== I use a software protection/licensing system (e.g. `ElecKey` or Themida) with my executables. Can I use it together with crashrpt? ==
+
+In general, yes. Such a software protection/licensing system usually provides API that can be used to wrap your code during the compilation. Minidumps for such a code will be generated correctly. 
+
+However, avoid modifying the binary image after it has been compiled (some software protection systems provide an ability to inject the code into compiled binaries). Modifying the image's PE headers or code segments may result in inability to recover stack traces correctly.
+
+== What files should I never distribute with my software release package? ==
+
+  * All binaries (EXE, DLL) and program database files (PDB) compiled in `Debug` configuration SHOULD NOT be distributed as they will not only take up more space , but they will also make reverse engineering your code easier.
+  * The program database files (PDB) generated in `Release` configuration SHOULD NOT be distributed because of they may make it easier to reverse engineer your code. 
+
+== What crashrpt files do I distribute with my software release package? == 
+
+It is recommended that you distribute the following files with your software release (XXXX is the version number):
+
+    * `CrashRptXXXX.dll` 
+    * `CrashSenderXXXX.exe` 
+    * `dbghelp.dll` 
+    * `crashrpt_lang.ini`
+    
+It is recommended that you place these files to the directory where your application executable file is located.
+
+The `CrashRptXXXX.dll` and `CrashSenderXXXX.exe` are core `CrashRpt` modules. `dbghelp.dll` (Microsoft Debug Help Library) is the module `CrashRpt` depends on. `crashrpt_lang.ini` is the language file.
+
+== What version of dbghelp.dll should I distribute? ==
+
+You can distribute the version of `dbghelp.dll` that is shipped with `CrashRpt` archive. Or you can distribute `dbghelp.dll` from Debugging Tools for Windows.
+
+== My 64-bit application needs an x64 version of dbghelp.dll, but crashrpt distribution has only x86 one. What do I do? ==
+
+64-bit applications can only load 64-bit DLLs, if x64 version of `dbghelp.dll` is not present, than `CrashRpt` will try to load the one from system directories.
+
+So, in order for `CrashRpt` to work properly, you should get the `dbghelp.dll` from `Microsoft Debugging Tools for Windows` package. You can install it as a part of Windows SDK. For additional info, please see this [http://msdn.microsoft.com/en-us/windows/hardware/gg463009.aspx link].
+
+== I know that dbghelp.dll is shipped with Windows. Why should I distribute it? ==
+
+It is recommended that you distribute `dbghelp.dll` with your software, because some end-user machines may not have `dbghelp.dll` installed or `dbghelp.dll`'s version may be different on different user machines. You may ignore distribution of `dbghelp.dll` at your own risk. 
+
+Even though `dbghelp.dll` is included in versions of Windows starting from XP, this is rarely the most current version of `DbgHelp` available. Furthermore, the version of `DbgHelp` that ships in Windows has reduced functionality from the other releases.
+
+== I use C run-time libraries (CRT) as a multi-threaded DLL. What CRT files should I distribute with my software? ==
+
+Note: this answer is applicable to Visual Studio 2005/2008.
+
+First of all, determine what DLL modules your application depends on. You can do this with the help of the [http://www.dependencywalker.com/ Dependency Walker (depends.exe)] tool. Open your executable file with the `depends.exe` to see what CRT modules it depends on. Typically these modules are `msvcrXX.dll` and `msvcpXX.dll`, where XX is the version number of your Visual Studio (for example, Visual Studio 2005 has version number `80`).
+
+Next, you need to determine the exact version of CRT libraries you use. Microsoft usually upgrades CRT version when releasing service packs and hot fixes for Visual Studio, so this step is very important. To determine the version of your CRT, do the following. In your Visual Studio window, click menu File->Open and open your executable module to view its embedded resources. In appeared window, click `RT_MANIFEST` folder to see the embedded manifest XML file. The version of CRT is defined by the `version` attribute. An example CRT manifest is presented below:
+
+{{{
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <dependency>
+    <dependentAssembly>
+      <assemblyIdentity type="win32" name="Microsoft.VC80.CRT" version="8.0.50608.0" 
+processorArchitecture="x86" publicKeyToken="1fc8b3b9a1e18e3b"></assemblyIdentity>
+    </dependentAssembly>
+  </dependency>
+</assembly>
+}}}
+
+Next you should choose how to distribute the CRT files. There are two ways: either by installing a Visual C++ redistributable package or by installing the DLLs to application local folder (an application local folder is a folder that contains an executable application file). Below these two alternatives are described.
+
+a. You can download a Visual C++ Redistributable package from the [http://www.microsoft.com/downloads Microsoft Download Center]. There are different packages for x86 and x64 architectures, choose the correct one. Also ensure the package has exactly the same version that your CRT manifest has. If version doesn't match, search again for the correct redistributable package. When the correct package is downloaded, you can include it into your application installer and install it with your software.
+
+b. You can copy CRT DLL files and `Microsoft.VCXX.CRT.manifest` file to your application folder, where XX is the version number. This is called a private installation, because these CRT DLLs won't be available to other applications. This way may also reduce the size of your installer, because CRT DLLs usually take less space than a redistributable package. You can take the correct CRT DLL files from `redist` subfolder of your Visual Studio folder or from the Visual C++ redistributable package (it is installed to `C:\WINDOWS\WinSxS directory). 
+
+For additional information, see these links: [http://msdn.microsoft.com/en-us/library/ms235299.aspx Redistributing Visual C++ Files], [http://msdn.microsoft.com/en-us/library/8kche8ah.aspx Determining Which DLLs to Redistribute], [http://msdn.microsoft.com/en-us/library/ms235342(v=vs.80).aspx Troubleshooting C/C++ Isolated Applications and Side-by-side Assemblies], [http://msdn.microsoft.com/en-us/library/cc664727(v=vs.90).aspx Redistributing an Application and Binding It to Specific Libraries].
+
+== My application doesn't start because of error message 'The application configuration is incorrect'. What do I do? ==
+
+Note: this answer is applicable to Visual Studio 2005/2008.
+
+This error typically means your application can't load the correct C run-time libraries (CRT). To determine what DLL modules your application depends on are missing, use the [http://www.dependencywalker.com/ Dependency Walker (depends.exe)] tool. Open your executable file with the `depends.exe` to see what CRT modules it depends on, and which ones are missing. Typically these modules are `msvcrXX.dll` and `msvcpXX.dll`, where XX is the version number of your Visual Studio (for example, Visual Studio 2005 has version number `80`). You should install CRT libraries either by running a Visual C++ Redistributable Package or by copying CRT DLL files and `Microsoft.VCXX.CRT.manifest` file to your application folder. Also ensure the version and architecture of the CRT files you install is correct. 
+
+== I do not like that I should distribute all these DLLs and EXEs (`CrashRpt.dll`, `dbghelp.dll`, `CrashSender.exe`). Can I compile them all as static libs? ==
+
+No, this is impossible. Architecture of `CrashRpt` requires two modules: `CrashRpt.dll` and `CrashSender.exe`. You may ignore distribution of `dbghelp.dll`, but a end-user's operating system may not have `dbghelp.dll` installed. So, you have to distribute all these binaries.
+
+----
+
+= Using Error Reports Questions =
+
+== I'm trying to send a report, but MAPILogon fails with error 80004005. What do I do? ==
+
+This issue is not related to `CrashRpt`. See this knowledge base article: http://support.microsoft.com/kb/813745/en-us
+
+To resolve this issue, you must first remove the corrupted Outlook registry key, and then perform a Detect and Repair operation to have Outlook rebuild the key.
+
+Before trying the fix in the link above, check that the 'bitness' of your application and your Outlook correspond -- if you have 32-bit Outlook and 64-bit application, MAPI WILL fail.
+
+== Are there any crash report size limitations? ==
+
+Yes, they are. Although `CrashRpt` supports large error reports, the crash report should be as small as possible. If you use E-mail for error reports delivery, there may be mail size limits on the SMTP server. If the error report is larger than the limit, it is possible that the error report will be rejected. If you use HTTP (or HTTPS) for error report delivery, there may also be POST data size limits on the web-server. You should check your web-server settings to figure out the maximum error report size.
+
+== How do I check integrity of a received error report?  ==
+
+You may calculate MD5 hash for your error report and compare it with the MD5 hash that is attached to the error report. 
+
+When you receive error reports using HTTP (or HTTPS) connection, the MD5 hash is passed to the server-side script through the 'md5' parameter. 
+
+Since `CrashRpt` v1.1.1., when you receive error reports using email, the MD5 hash is attached to the email.
+
+== How do I use an error report for debugging a crash? ==
+
+A crash report is a ZIP file containing several files, such as crash minidump (crashdump.dmp), crash description XML (crashrpt.xml), and optional application-specific files, e.g. application log files.
+
+The crash description is an XML file that contains the basic information about the crash, for example exception type, operating system name, application name and version.
+ 
+The crash dump file is a collection of memory ranges, CPU register states, the call stack and local variables for each execution thread, the list of loaded and unloaded modules and system information. You can open the minidump in your Visual Studio or in `WinDbg` program and see the place of your code where exception had occurred. 
+
+== Does crashrpt support bidirectional communication (the user gets an email with updates on his issue)? ==
+
+`CrashRpt` currently does not support bidirectional communication, but we may include this feature in a future release.  
+
+== I want the user to directly send me the stack trace, w/o me need to post-process anything with that on my side. Does crashrpt support this somehow? == 
+
+No, `CrashRpt` can't generate readable stack traces on the side of the user. It supports developer-side error report processing.
+
+User-side error report processing would require you to distribute your PDB files with your software. Typically you do not distribute PDB files, because it makes someone easier to reverse-engineer your program. Our approach is developer-side post-processing. This means users send you error reports and you post-process them on your machine, where PDB files, binaries and source code are located. 
+
+== How do I open a crash description XML file? ==
+
+You can use `notepad`, another text editor (like [http://notepad-plus-plus.org/ Notepad ++]), or your web browser (like Internet Explorer of Mozilla Firefox).
+
+== What is crash GUID? ==
+
+A crash description XML contains `CrashGUID` tag. The crash GUID is an unique identifier that is assigned to the error report. GUIDs are generated using special algorithm which guarantees very low probability of generating the same GUID twice, even on different user machines. The crash GUID can be used, for example, as the primary key if you plan to store crash reports in a database.
+
+== How do I determine the name and version of the application that generated the error report?  ==
+
+The crash description XML file contains `AppName` and `AppVersion` tags. You use them to determine what application sent you the report. You are typically interested in analyzing error reports from the latest version of your software and ignore reports from older versions.
+
+== What is an `ExceptionType` tag in the crash description XML? ==
+
+The exception type shows what exception handler caught the exception. For example, type 0 means that the SEH exception was intercepted by the unhandled exception filter set with `SetUnhandledExceptionFilter()` function. The exception type can be used to divide exceptions in some categories. See the documentation for more information about exception type.
+
+== How do I open a crash minidump file (.DMP)? ==
+
+Double-click on the minidump file name. This should open it using an associated program (for example, Visual Studio). When minidump file is loaded in Visual Studio, press F5 to run it. If debug symbols are loaded successfully, you are now able to see the place in your source code where exception had occurred.
+
+Alternatively, you can open the minidump file using `WinDbg` program from `Microsoft Debugging Tools`. It is freely distributed.
+
+== Can I open crash minidumps with `WinDbg`? ==
+
+Yes, you can open crash minidumps (.DMP files) with `WinDbg` program that is a part of Debugging Tools for Windows.
+
+== How do I identify if the symbol files fit to a certain executable? ==
+
+Symbol files are identified by GUID+Age string. You do not need to identify matching PDB yourself. Just specify the list of folders to search in and Visual Studio (or `WinDbg`) will look for correct PDB files itself. 
+
+== If I've saved all the source code, should building from the source recreate the correct PDBs? ==
+
+No, the recreated PDB files will not be the same as the original ones. The recreated PDB files won't have matching time stamp (or GUID). The building environment may also be different, so generated binaries may be different.
+
+The recommended way is to save the original PDB files (that were produced when building the project), binary files (EXE and DLL) along with the source code. 
+
+== I open minidump, but symbols are not loaded. What do I do? ==
+
+Sometimes you can't determine the location of the crash and the error message is displayed 'No symbols loaded for any stack frame'. This may be because of the following reasons.
+
+  * Debugger may not locate the correct PDB and binary files. Try to open `Tools->Options->Debugging->Symbols` and enter the path to the directory where your PDB files are located. Then reopen the minidump.
+
+  * You have wrong or missing PDB files. Open the Modules window and check the symbol status for modules of your program. If the status is 'Not loaded' than you have missing PDB. Or maybe correct PDB files weren't saved locally before software release. In such case you won't be able to properly read any of received crash reports.
+
+  * If symbols for some modules of your program are loaded, and you have the error, than there were no debugging symbols generated for the module where crash had occurred. Check that you set `Program Database (/Zi)` compiler flag for all modules of your application.
+
+== How do I automate crash report processing? ==
+
+Automating the error report processing becomes the critical task when you receive a lot of error reports after software release. Among hundreds of reports there may be only several different problems, while others just duplicate the information about these problems. Opening so many reports manually in Visual Studio or in `WinDbg` and analyzing their content may become boring and take a lot of time.
+
+The easiest way to process error reports automatically is to install the [http://crashfixsoftware.com CrashFix] web application. [http://crashfixsoftware.com CrashFix] server allows to easily receive, store, organize and analyze crash reports sent by your C++ application. For additional information, please visit [http://crashfixsoftware.com CrashFix Server] page. 
+
+`CrashRpt` also provides the command-line tool named `crprober.exe`, which is able to process error report files and output the results to a text file or to terminal. 
+
+`CrashRpt` also has special `CrashRptProbe API` to provide base crash report processing services to your custom error report processing applications.
+
+== How do I use the `crprober.exe` tool? ==
+
+Since v1.2.0, `CrashRpt` provides a tool named `crprober.exe` that can be used for automating crash report processing. To run the tool, go to `bin` directory and type `crprober.exe` in the command line. 
+
+The tool can be used to open error report files generated by any version of `CrashRpt`. However it works the best with reports created by version 1.1 and higher.
+
+For usage examples, please see the documentation.
+
+== How do I calculate some statistics about processed error reports? ==
+
+You can write some C++ program or for example Python script that would parse output text files and calculate the desired statistics. For example, see the SampleProcessingPythonScript provided by RoRThom.
+
+== Is it possible to use crprober under Linux? with Wine? ==
+
+I would not recommend to use `crprober.exe` in an operating system other than Windows because of license `dbghelp.dll` uses.
+
+The `crprober.exe` tool depends on `dbghelp.dll` (Microsoft Debug Help Library), which is licensed using [http://msdn.microsoft.com/en-us/library/ms679309%28VS.85%29.aspx Microsoft Software License Terms for Microsoft Debugging Tools for Windows]. This license doesn't allow to distribute `dbghelp.dll` "to run on a platform other than the Windows platform". 
+
+== What is `CrashRptProbe API`? ==
+
+The `CrashRptProbe API` is the application programming interface for processing error reports generated by crashrpt. The API includes several functions you can use in your own error report processing tool. The API is used internally by the `crprober.exe` tool.
+
+The error report processing functionality is encapsulated inside of `CrashRptProbe.dll`. Internally `CrashRptProbe.dll` uses functions provided by `dbghelp.dll` (Microsoft Debug Help Library) for loading the minidump file contained in the report.
+
+----
+
+= Miscellaneous Questions =
+
+== Are there many Windows applications using crashrpt? ==
+
+We beleive that yes. Some of them are listed on WhoUsesCrashRpt page. You can add your app name on that page if you wish (but we do not insist). 
+
+== How does crashrpt work internally? ==
+
+`CrashRpt` consists of two core modules: `CrashRpt.dll` and `CrashSender.exe`.`CrashRpt.dll` contains functionality for intercepting exceptions in a client software. `CrashSender.exe` contains functionality for compressing and sending error reports to the software's support team.
+
+It is unsafe to do complex operations in the crashed program which may be unstable. `CrashRpt` is separated into these modules to be able to close the application which have crashed and to continue sending the error report in `CrashSender.exe` in background. 
+
+Typically a process (executable file) loads `CrashRpt.dll` into its address space when process starts. This single instance of `CrashRpt` is shared between all DLL modules that are loaded into the address space of the process. Client application uses `CrashRpt` API functions to set exception handlers in the process once, typically in its `main()` function. In a multi-threaded program, client additionally sets exception handlers in the beginning of thread procedure of each worker thread.
+
+== How can I use crashrpt without `CrashSender.exe`? ==
+
+You can not generate crash reports without `CrashSender.exe`. It is unsafe to do complex operations in the crashed program which may be unstable. `CrashSender.exe` collects information about the crash, closes the application which have crashed and continues sending the error report in background.
+
+== How is `CrashRpt.dll` loaded and how is it shared between other modules loaded into process address space? ==
+
+Typically your process (EXE) loads `CrashRpt.dll` into process address space when process starts. This single instance of `CrashRpt` is shared between all DLL modules that are loaded into the address space of the process.
+
+== My software is not an EXE, but DLL (e.g. a plug-in for another software). Can I use crashrpt in such a case? ==
+
+Generally, it is not recommended to use `CrashRpt` if your software is a plug-in DLL. It would be better if the client process (EXE) take care of exception handling instead of your DLL. 
+
+However, if you strongly wish, you may try to install exception handlers in your `DllMain()` function, but typically you can't guarantee that the client process (EXE) won't install its own exception handlers above yours. And if the client process uses several worker threads that call functions from your DLL, you would have to install per-thread exception handlers, too.
+
+== How do I use crashrpt across process boundaries? == 
+
+Each process loads its own copy of `CrashRpt.dll`. It is difficult to imagine how you can share single loaded instance of `CrashRpt.dll` between several processes. Currently `CrashRpt` doesn't support such possibility. 
+
+== Does using crashrpt affect performance of my application? ==
+
+In most cases no, using `CrashRpt` doesn't affect performance of your application. `CrashRpt` doesn't perform any tasks in background and doesn't use additional memory. `CrashRpt` code is executed just when an exception is raised.
+
+However, `CrashRpt` may affect performance of end user's computer if you run its desktop video capture feature (`crAddVideo()` function). In such a case, `CrashRpt` consumes some CPU resources and disk space to record video.
+
+== Does using crashrpt make it easier for somebody to reverse engineer my code? ==
+
+No, actually not. In order to use `CrashRpt`, you enable program database generation in Release configuration (/Zi compiler flag and /DEBUG linker flag) and this generates .PDB file for your project. PDB files contain information which can be used to reverse engineer your code, however you typically store such information locally and do not distribute it with your software release package. So, using `CrashRpt` doesn't affect the difficulty of reverse engineering your code. 
+
+== Does crashrpt intercept _exactly_ all exceptions that may occur in my program? == 
+
+`CrashRpt` intercepts all exceptions that are allowed to intercept by C runtime libraries (CRT).
+
+Note that some exceptions related to security can't be intercepted. Since CRT 8.0 you can't intercept security errors in your code. When buffer overrun is detected, CRT invokes Dr.Watson directly instead of calling unhandled exception filter. This is done because of security reasons and Microsoft doesn't plan to change this behavior.
+
+For more information, see this [https://connect.microsoft.com/VisualStudio/feedback/ViewFeedback.aspx?FeedbackID=101337 link].
+
+==  I cannot seem to catch the crash at all, the application just closes. No crash window courtesy of Windows, nothing at all. It just poof, closes. What do I do? ==
+
+The problem with silently disappearing application window may be related to [http://en.wikipedia.org/wiki/Stack_overflow stack overflow]. When stack is overflown, the process doesn't have enough memory even for invoking crash handler. So it looks like a silent exit.
+
+The advice for you is to maintain a log file for your application. See this link for example of a [http://crashrpt.sourceforge.net/docs/html/simple_example.html logging functionality].
+
+The log file will help you to see where is the stack overflow happens. For example, if there is an [http://en.wikipedia.org/wiki/Infinite_loop infinite recursion] in your code, you will see many log messages looking very similar.
+
+== Can crashrpt intercept Boost's Exception ? ==
+
+`CrashRpt` intercepts structured `Win32` exceptions (SEH exceptions), C run-time (CRT) exceptions and signals. [http://www.boost.org/ Boost] is built on top of CRT, so `CrashRpt` should intercept its exceptions. However, `CrashRpt` was not tested with Boost. 
+
+==  I'd like to be able to display a different message in the `CrashSender.exe` process for different types of crashes. Maybe also display a different icon. Can I do this? ==
+
+`CrashRpt` currently can't customize its behavior based on crash type. I'm not sure this feature would be widely used. Typical users do not have technical knowledge about memory. So, I'm not very encouraged to implement this.
+
+== It seems my Visual Studio IDE interferes the exception: It does not let the exception run through to crashrpt. If I call the `.exe` from command line, everything works fine as expected. What do I do? ==
+
+Visual Studio IDE will always intercept exceptions in your software while debugging. There are no ways to fix this. If you need to test `CrashRpt` under IDE, use `crGenerateErrorReport()` function, it will generate a error report without raising an exception.
+
+== If I call C++ delete operator on an already deleted pointer, crashrpt cannot handle this situation correctly, most of the times it just stops working. Is this a bug in crashrpt? ==
+
+No, this is not a bug in `CrashRpt`. For example, assume the following code:
+
+{{{
+CPoint* pt = new CPoint;
+
+delete pt;
+delete pt;
+}}}
+
+Executing the code above results in heap corruption. What happens next is called "undefined behavior". Your program may crash immediatelly, crash randomly in some period of time or just continue working with corrupted memory. Obviously, `CrashRpt` cannot work correctly in this situation.
+
+The recommended way of deleting a pointer is to delete it and set it to NULL. For example, consider making a macro for this:
+
+{{{
+#define SAFE_DELETE(ptr) { delete(ptr); (ptr)=NULL; }
+}}}
+
+For more information, see this [http://stackoverflow.com/questions/2746677/what-happens-when-you-deallocate-a-pointer-twice-or-more-in-c post].
+
+== In some of received crash minidumps I see that the crash happened in `CrashRpt.dll` itself (mostly when it invoked `InvalidParameterHandler`). Is this normal? ==
+
+Yes, this is normal. When a crash occurs, `CrashRpt.dll` checks if exception pointers structure presents. This structure is ususally allocated by the OS automatically when a SEH exception occurs (e.g., access violation reading NULL). If the structure doesn't present (which is true in case of invalid parameter exception), `CrashRpt` allocates the structure itself by getting the current state of the CPU registers. In such a case, you will see in the minidump that the crash originates inside of the `CrashRpt.dll`, but this is just an illusion. You should skip the stack frames that belong to `CrashRpt.dll` and look at the stack frames that belong to the modules of your application.

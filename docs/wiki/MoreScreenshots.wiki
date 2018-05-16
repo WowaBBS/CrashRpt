@@ -1,0 +1,66 @@
+#summary More Screenshots.
+#labels Featured
+
+*Error Report Dialog.* This dialog appears when a critical error occurs in the application. The Error Report dialog allows to review report contents, provide user's Email and problem description, and send the report to the software's vendor.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/errordlg.png
+
+*Error Report Dialog in Chinese.* `CrashRpt` user interface supports multiple languages. Currently, `CrashRpt` is translated to world's most spoken languages, such as English, Chinese, Spanish, Portuguese, Hindi, Russian and others.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/errordlg_chinese.png
+
+*Error Report Dialog in Russian.* You even can contribute a language file for your native language. Refer to the documentation for more information.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/errordlg_russian.png
+
+*Expanded Error Report Dialog.* Clicking the 'Provide additional information (recommended)' link allows to enter additional info about the problem, such as user's Email address and a short problem description. 
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/errordlg_expanded.png
+
+*Other Actions... Context Menu.* You can postpone error report delivery by pressing the 'Other Actions...' button and selecting an item from the context menu.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/errordlg_context_menu.png
+
+*Error Report Details.* This dialog show the list of files contained in the error report and allows user to preview and open these files.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/detail_dlg_hex_preview.png
+
+*Text Preview.* The Error Report Details dialog supports several preview modes: HEX preview, text preview (ANSI, UTF-8, UNICODE encodings), image preview.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/detail_dlg_text_preview.png
+
+*Image Preview.* The Error Report Details dialog is able to display preview of BMP, JPG and PNG image files.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/detail_dlg_screenshot.png
+
+*Desktop Screenshots.* If your program has several windows, its desktop screenshot preview looks like this. 
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/detaildlg_multi_screenshot.png
+
+*Registry Key Dumps.* If your error report contains a registry key dump, it looks like this.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/detail_dlg_reg_key_dump.png
+
+*Error Report Delivery.* The following dialog displays the progress of error report delivery (HTTP)...
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/progressdlg.png
+
+*Error Report Delivery Methods.* Your report can be also delivered as a Email message. 
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/progressdlg_email.png
+
+*Error Report Delivery Failure.* When error report delivery fails, user presses the Close button to close the window.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/progressdlg_failed.png
+
+*Error Report Delivery Log.* It may be useful to copy log to clipboard by right-clicking the list control...
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/progressdlg_context_menu.png
+
+*Postponed Delivery Balloon.* `CrashRpt` allows the user to postpone error report delivery. When its time to remind about the delivery, `CrashRpt` displays the balloon.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/resend_balloon.png
+
+*Send Error Reports Dialog.* This dialog appears when the user clicks the balloon. The dialog allows user to review the error reports being ready for delivery and send them all at once.
+
+http://crashrpt.googlecode.com/svn/wiki/img/CrashRpt/resend_dialog.png
