@@ -31,7 +31,7 @@ BOOL ERIFileItem::GetFileInfo(HICON& hIcon, CString& sTypeName, LONGLONG& lSize)
 	    
 	// Open file for reading
     hFile = CreateFile(m_sSrcFile, 
-            GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, NULL, NULL); 
+            GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, NULL); 
     if(hFile==INVALID_HANDLE_VALUE)
 		return FALSE; // Error - file may not exist
 
@@ -332,7 +332,7 @@ LONG64 CErrorReportInfo::CalcUncompressedReportSize()
         CString sFileName = pfi->m_sSrcFile.GetBuffer(0);
 		// Open file for reading
         hFile = CreateFile(sFileName, 
-            GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, NULL, NULL); 
+            GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, NULL); 
         if(hFile==INVALID_HANDLE_VALUE)
         {            
             continue;
@@ -1425,7 +1425,7 @@ LONG64 CCrashInfoReader::GetUncompressedReportSize(CErrorReportInfo& eri)
         CString sFileName = it->second.m_sSrcFile.GetBuffer(0);
 		// Check file exists
         hFile = CreateFile(sFileName, 
-            GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, NULL, NULL); 
+            GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, NULL); 
         if(hFile==INVALID_HANDLE_VALUE)
             continue; // File does not exist
 

@@ -1859,7 +1859,7 @@ BOOL CErrorReportSender::CompressReportFiles(CErrorReportInfo* eri)
 
 		// Open file for reading
         hFile = CreateFile(sFileName, 
-            GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, NULL, NULL); 
+            GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, NULL); 
         if(hFile==INVALID_HANDLE_VALUE)
         {
             sMsg.Format(_T("Couldn't open file %s"), sFileName);

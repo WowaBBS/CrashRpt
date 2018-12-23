@@ -59,7 +59,7 @@ BOOL CFileMemoryMapping::Init(LPCTSTR szFileName)
     }
 
     // Open file handle
-    m_hFile = CreateFile(szFileName, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, 0, 0);
+    m_hFile = CreateFile(szFileName, GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, 0, OPEN_EXISTING, 0, 0);
     if(m_hFile == INVALID_HANDLE_VALUE)
         return FALSE;
 
@@ -1305,6 +1305,8 @@ PreviewMode CFilePreviewCtrl::DetectPreviewMode(LPCTSTR szFileName)
     aTextFileExtensions.insert(_T("H"));
     aTextFileExtensions.insert(_T("CPP"));
     aTextFileExtensions.insert(_T("HPP"));
+    aTextFileExtensions.insert(_T("CFG"));
+    aTextFileExtensions.insert(_T("LUA"));
 
     it = aTextFileExtensions.find(sExtension);
     if(it!=aTextFileExtensions.end())

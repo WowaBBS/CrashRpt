@@ -193,6 +193,7 @@ BOOL CHttpRequestSender::InternalSend()
 		// Send request
 		if(!HttpSendRequestEx( hRequest, &BufferIn, NULL, 0, 0))
 		{
+			m_Assync->SetProgress(Utility::FormatErrorMsg(GetLastError()), 0);
 			m_Assync->SetProgress(_T("HttpSendRequestEx has failed."), 0);
 			goto cleanup;
 		}
@@ -484,7 +485,7 @@ BOOL CHttpRequestSender::WriteAttachmentPart(HINTERNET hRequest, CString sName)
 
     CString sFileName = it->second.m_sSrcFileName.GetBuffer(0);
     HANDLE hFile = CreateFile(sFileName, 
-        GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, NULL, NULL); 
+        GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, NULL); 
     if(hFile==INVALID_HANDLE_VALUE)
     {    
         m_Assync->SetProgress(_T("Error opening attachment file."), 0);
@@ -687,7 +688,7 @@ BOOL CHttpRequestSender::CalcAttachmentPartSize(CString sName, LONGLONG& lSize)
 
     CString sFileName = it->second.m_sSrcFileName.GetBuffer(0);
     HANDLE hFile = CreateFile(sFileName, 
-        GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, NULL, NULL); 
+        GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, NULL); 
     if(hFile==INVALID_HANDLE_VALUE)
     {    
         return FALSE; 
