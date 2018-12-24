@@ -1679,11 +1679,12 @@ int CErrorReportSender::CalcFileMD5Hash(CString sFileName, CString& sMD5Hash)
     sMD5Hash.Empty();
 
 	// Open file
-#if _MSC_VER<1400
-    f = _tfopen(sFileName.GetBuffer(0), _T("rb"));
-#else
-    _tfopen_s(&f, sFileName.GetBuffer(0), _T("rb"));
-#endif
+    f = _wfsopen(sFileName.GetBuffer(0), _T("rb"), _SH_DENYNO);
+//#if _MSC_VER<1400
+//    f = _tfopen(sFileName.GetBuffer(0), _T("rb"));
+//#else
+//    _tfopen_s(&f, sFileName.GetBuffer(0), _T("rb"));
+//#endif
 
 	// Check if file has been opened
     if(f==NULL) 
@@ -2186,11 +2187,12 @@ int CErrorReportSender::Base64EncodeAttachment(CString sFileName,
 
     // Read file data to buffer.
     FILE* f = NULL;
-#if _MSC_VER<1400
-    f = _tfopen(sFileName, _T("rb"));
-#else
-    /*errno_t err = */_tfopen_s(&f, sFileName, _T("rb"));  
-#endif 
+    f = _wfsopen(sFileName, _T("rb"), _SH_DENYNO);
+//#if _MSC_VER<1400
+//    f = _tfopen(sFileName, _T("rb"));
+//#else
+//    /*errno_t err = */_tfopen_s(&f, sFileName, _T("rb"));  
+//#endif 
 
     if(!f || fread(uchFileData, uFileSize, 1, f)!=1)
     {

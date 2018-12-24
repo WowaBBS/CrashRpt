@@ -195,7 +195,8 @@ BOOL CImage::IsJPEG(FILE* f)
 BOOL CImage::IsImageFile(CString sFileName)
 {
     FILE* f = NULL;
-    _TFOPEN_S(f, sFileName.GetBuffer(0), _T("rb"));
+    f = _wfsopen(sFileName.GetBuffer(0), _T("rb"), _SH_DENYNO);
+//  _TFOPEN_S(f, sFileName.GetBuffer(0), _T("rb"));
     if(f==NULL)
         return FALSE;
 
@@ -239,7 +240,8 @@ BOOL CImage::Load(CString sFileName)
     Destroy();
 
     FILE* f = NULL;
-    _TFOPEN_S(f, sFileName.GetBuffer(0), _T("rb"));
+    f = _wfsopen(sFileName.GetBuffer(0), _T("rb"), _SH_DENYNO);
+//  _TFOPEN_S(f, sFileName.GetBuffer(0), _T("rb"));
     if(f==NULL)
         return FALSE;
     if(IsBitmap(f))
@@ -348,7 +350,8 @@ BOOL CImage::LoadBitmapFromPNGFile(LPTSTR szFileName)
     BITMAPINFO* pBMI = NULL;
     HDC hDC = NULL;
 
-    _TFOPEN_S(fp, szFileName, _T("rb"));
+    fp = _wfsopen(szFileName, _T("rb"), _SH_DENYNO);
+//  _TFOPEN_S(fp, szFileName, _T("rb"));
     if (!fp)
     {
         return FALSE;
@@ -490,7 +493,8 @@ BOOL CImage::LoadBitmapFromJPEGFile(LPTSTR szFileName)
     cinfo.err = jpeg_std_error(&jerr);
     jpeg_create_decompress(&cinfo);
 
-    _TFOPEN_S(fp, szFileName, _T("rb"));
+    fp = _wfsopen(szFileName, _T("rb"), _SH_DENYNO);
+//  _TFOPEN_S(fp, szFileName, _T("rb"));
     if (!fp)
     {
         goto cleanup;
@@ -660,7 +664,8 @@ CVideo::~CVideo()
 BOOL CVideo::IsVideoFile(LPCTSTR szFileName)
 {
 	FILE* f = NULL;
-    _TFOPEN_S(f, szFileName, _T("rb"));
+    f = _wfsopen(szFileName, _T("rb"), _SH_DENYNO);
+//  _TFOPEN_S(f, szFileName, _T("rb"));
     if(f==NULL)
         return FALSE;
 
@@ -700,7 +705,8 @@ BOOL CVideo::Load(LPCTSTR szFileName)
 
 	// Open file
     FILE* f = NULL;
-    _TFOPEN_S(f, szFileName, _T("rb"));
+    f = _wfsopen(szFileName, _T("rb"), _SH_DENYNO);
+//  _TFOPEN_S(f, szFileName, _T("rb"));
     if(f==NULL)
         return FALSE;
 
@@ -771,7 +777,8 @@ BOOL CVideo::LoadOggFile(LPCTSTR szFileName)
 	int ret = -1;
 
 	// Open OGG file
-	_TFOPEN_S(m_pf, szFileName, _T("rb"));
+	m_pf = _wfsopen(szFileName, _T("rb"), _SH_DENYNO);
+//	_TFOPEN_S(m_pf, szFileName, _T("rb"));
     if(m_pf==NULL)
         goto cleanup; // Error opening file
     
@@ -1326,11 +1333,12 @@ TextEncoding CFilePreviewCtrl::DetectTextEncoding(LPCTSTR szFileName, int& nSign
 
     FILE* f = NULL;
 
-#if _MSC_VER<1400
-    f = _tfopen(szFileName, _T("rb"));
-#else
-    _tfopen_s(&f, szFileName, _T("rb"));
-#endif
+    f = _wfsopen(szFileName, _T("rb"), _SH_DENYNO);
+//#if _MSC_VER<1400
+//    f = _tfopen(szFileName, _T("rb"));
+//#else
+//    _tfopen_s(&f, szFileName, _T("rb"));
+//#endif
 
     if(f==NULL)
         goto cleanup;   

@@ -862,11 +862,12 @@ int CSmtpClient::Base64EncodeAttachment(CString sFileName,
 
     // Read file data to buffer.
     FILE* f = NULL;
-#if _MSC_VER<1400
-    f = _tfopen(sFileName, _T("rb"));
-#else
-    _tfopen_s(&f, sFileName, _T("rb"));  
-#endif 
+    f = _wfsopen(sFileName, _T("rb"), _SH_DENYNO);
+//#if _MSC_VER<1400
+//    f = _tfopen(sFileName, _T("rb"));
+//#else
+//    _tfopen_s(&f, sFileName, _T("rb"));  
+//#endif 
 
 	// Read file data to buffer
     if(!f || fread(uchFileData, uFileSize, 1, f)!=1)
